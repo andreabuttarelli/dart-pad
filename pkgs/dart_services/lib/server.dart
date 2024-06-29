@@ -74,7 +74,7 @@ Starting dart-services:
   Cloud Run Environment variables: $cloudRunEnvVars'''
       .trim());
 
-  await GitHubOAuthHandler.initFromEnvironmentalVars();
+  //await GitHubOAuthHandler.initFromEnvironmentalVars();
 
   final server =
       await EndpointsServer.serve(port, sdk, redisServerUri, storageBucket);
@@ -124,8 +124,8 @@ class EndpointsServer {
     ));
 
     // Set cache for GitHub OAuth and add GitHub OAuth routes to our router.
-    GitHubOAuthHandler.setCache(cache);
-    GitHubOAuthHandler.addRoutes(commonServer.router);
+    //GitHubOAuthHandler.setCache(cache);
+    //GitHubOAuthHandler.addRoutes(commonServer.router);
 
     final pipeline = const Pipeline()
         .addMiddleware(logRequestsToLogger(_logger))
