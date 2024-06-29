@@ -45,5 +45,6 @@ flutter:
 dependency_overrides:
   dartpad_shared:
     git:
-      url: https://github.com/andreabuttarelli/dart-pad/tree/main/pkgs/dartpad_shared
+      url: https://github.com/andreabuttarelli/dart-pad.git
       ref: main
+      path: pkgs/dartpad_shared
