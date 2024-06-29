@@ -1,6 +1,7 @@
 name: dartpad_shared
 description: Shared code between the DartPad frontend and backend.
 publish_to: none
+version: 1.0.0
 
 environment:
   sdk: ^3.4.0
