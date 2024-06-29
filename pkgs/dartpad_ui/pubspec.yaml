@@ -1,6 +1,7 @@
 name: dartpad_ui
 description: The front-end UI of DartPad.
 publish_to: none
+version: 1.0.0
 
 environment:
   sdk: ^3.4.0
