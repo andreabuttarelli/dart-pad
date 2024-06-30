@@ -447,9 +447,9 @@ class AppServices {
 }
 
 enum Channel {
-  stable('Stable', 'https://stable.api.dartpad.dev/'),
-  beta('Beta', 'https://beta.api.dartpad.dev/'),
-  main('Main', 'https://master.api.dartpad.dev/'),
+  stable('Stable', 'http://gwk4k0w.49.13.169.245.sslip.io:8081/'),
+  beta('Beta', 'http://gwk4k0w.49.13.169.245.sslip.io:8081/'),
+  main('Main', 'http://gwk4k0w.49.13.169.245.sslip.io:8081/'),
   // This channel is only used for local development.
   localhost('Localhost', 'http://localhost:8080/');
 

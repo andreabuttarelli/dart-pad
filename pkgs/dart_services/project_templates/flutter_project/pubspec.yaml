@@ -1,0 +1,60 @@
+name: dartpad_sample
+environment:
+  sdk: ^3.4.0
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  async: 2.11.0
+  basics: 0.10.0
+  bloc: 8.1.4
+  characters: 1.3.0
+  collection: 1.18.0
+  convert: 3.1.1
+  cross_file: 0.3.4+1
+  dartz: 0.10.1
+  english_words: 4.0.0
+  equatable: 2.0.5
+  fast_immutable_collections: 10.2.4
+  http: 1.2.1
+  intl: 0.19.0
+  lints: 4.0.0
+  matcher: 0.12.16+1
+  meta: 1.12.0
+  path: 1.9.0
+  petitparser: 6.0.2
+  quiver: 3.2.1
+  riverpod: 2.5.1
+  rohd: 0.5.3
+  rohd_vf: 0.5.0
+  rxdart: 0.27.7
+  stack_trace: 1.11.1
+  timezone: 0.9.3
+  typed_data: 1.3.2
+  vector_math: 2.1.4
+  web: 0.5.1
+  yaml: 3.1.2
+  yaml_edit: 2.2.1
+  animations: 2.0.11
+  creator: 0.3.3
+  flame: 1.18.0
+  flame_fire_atlas: 1.5.2
+  flame_forge2d: 0.18.1
+  flame_splash_screen: 0.3.0
+  flame_tiled: 1.20.2
+  flutter_adaptive_scaffold: 0.1.11
+  flutter_bloc: 8.1.6
+  flutter_hooks: 0.20.5
+  flutter_map: 7.0.1
+  flutter_markdown: 0.7.2
+  flutter_riverpod: 2.5.1
+  flutter_svg: 2.0.10+1
+  go_router: 14.1.4
+  google_fonts: 6.2.1
+  google_generative_ai: 0.4.3
+  hooks_riverpod: 2.5.1
+  provider: 6.1.2
+  shared_preferences: 2.2.3
+  url_launcher: 6.3.0
+  video_player: 2.8.7

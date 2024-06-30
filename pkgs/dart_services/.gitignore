@@ -20,7 +20,7 @@ dump.rdb
 
 # compilation artifacts
 artifacts/
-project_templates/
+# project_templates/
 flutter-sdks/
 local_pub_cache/
 
