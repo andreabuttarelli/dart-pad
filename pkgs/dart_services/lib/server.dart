@@ -94,7 +94,7 @@ class EndpointsServer {
 
     endpointsServer.server = await shelf.serve(
       endpointsServer.handler,
-      '49.13.169.245',
+      InternetAddress.anyIPv4,
       port,
     );
 
