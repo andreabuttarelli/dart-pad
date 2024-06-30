@@ -150,6 +150,8 @@ final class Sdk {
     // packages/flutter/.
     final current = Directory.current;
     print(current.path);
+    print(
+        "/app/flutter exists: ${FileSystemEntity.isDirectorySync('/app/flutter')}");
     print('sdkPath exists: ${FileSystemEntity.isDirectorySync(sdkPath)}');
     print("../ exists: ${FileSystemEntity.isDirectorySync('../')}");
     if (FileSystemEntity.isDirectorySync('../')) {
