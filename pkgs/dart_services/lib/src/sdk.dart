@@ -73,6 +73,7 @@ final class Sdk {
         path.dirname(path.dirname(path.dirname(Platform.resolvedExecutable)))));
 
     print(Platform.environment);
+    print('potentialFlutterSdkPath $potentialFlutterSdkPath');
     final String flutterSdkPath;
     if (_validFlutterSdk(potentialFlutterSdkPath)) {
       flutterSdkPath = potentialFlutterSdkPath;
