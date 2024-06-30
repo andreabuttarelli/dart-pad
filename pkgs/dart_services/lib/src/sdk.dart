@@ -145,7 +145,7 @@ final class Sdk {
   static bool _validFlutterSdk(String sdkPath) {
     // Verify that this is a Flutter sdk; check for bin/, packages/, and
     // packages/flutter/.
-    print(FileSystemEntity.isDirectorySync(sdkPath));
+    print("${sdkPath} ${FileSystemEntity.isDirectorySync(sdkPath)}");
     if (!FileSystemEntity.isDirectorySync(sdkPath) ||
         !FileSystemEntity.isDirectorySync(path.join(sdkPath, 'bin'))) {
       return false;
