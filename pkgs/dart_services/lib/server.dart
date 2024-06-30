@@ -14,7 +14,6 @@ import 'package:shelf_gzip/shelf_gzip.dart';
 import 'src/caching.dart';
 import 'src/common_server.dart';
 import 'src/logging.dart';
-import 'src/oauth_handler.dart';
 import 'src/sdk.dart';
 
 final Logger _logger = Logger('services');
@@ -95,7 +94,7 @@ class EndpointsServer {
 
     endpointsServer.server = await shelf.serve(
       endpointsServer.handler,
-      InternetAddress.anyIPv4,
+      '49.13.169.245',
       port,
     );
 

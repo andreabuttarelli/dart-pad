@@ -68,14 +68,10 @@ final class Sdk {
     // we've been compiled into an AOT binary. In those cases we fall back to
     // looking for a 'FLUTTER_ROOT' environment variable.
 
-    print(Platform.resolvedExecutable);
-
     // <flutter-sdk>/bin/cache/dart-sdk/bin/dart
     final potentialFlutterSdkPath = path.dirname(path.dirname(
         path.dirname(path.dirname(path.dirname(Platform.resolvedExecutable)))));
 
-    print(Platform.environment);
-    print('potentialFlutterSdkPath $potentialFlutterSdkPath');
     final String flutterSdkPath;
     if (_validFlutterSdk(potentialFlutterSdkPath)) {
       flutterSdkPath = potentialFlutterSdkPath;
@@ -148,32 +144,7 @@ final class Sdk {
   static bool _validFlutterSdk(String sdkPath) {
     // Verify that this is a Flutter sdk; check for bin/, packages/, and
     // packages/flutter/.
-    final current = Directory.current;
-    print(current.path);
-    print(
-        "/app/flutter exists: ${FileSystemEntity.isDirectorySync('/app/flutter')}");
-    print('sdkPath exists: ${FileSystemEntity.isDirectorySync(sdkPath)}');
-    print("../ exists: ${FileSystemEntity.isDirectorySync('../')}");
-    if (FileSystemEntity.isDirectorySync('../')) {
-      for (final e in Directory('../').listSync()) {
-        print(e.path);
-      }
-    }
-    print("../usr exists: ${FileSystemEntity.isDirectorySync('../usr')}");
-    if (FileSystemEntity.isDirectorySync('../usr')) {
-      for (final e in Directory('../usr').listSync()) {
-        print(e.path);
-      }
-    }
-    print("../../ exists: ${FileSystemEntity.isDirectorySync('../../')}");
-    print("../../usr exists: ${FileSystemEntity.isDirectorySync('../../usr')}");
-    if (FileSystemEntity.isDirectorySync('../../usr')) {
-      for (final e in Directory('../../usr').listSync()) {
-        print(e.path);
-      }
-    }
-    print(
-        "$sdkPath ${FileSystemEntity.isDirectorySync(sdkPath)} ${!FileSystemEntity.isDirectorySync(path.join(sdkPath, 'bin'))}");
+
     if (!FileSystemEntity.isDirectorySync(sdkPath) ||
         !FileSystemEntity.isDirectorySync(path.join(sdkPath, 'bin'))) {
       return false;
