@@ -148,11 +148,11 @@ final class Sdk {
     // packages/flutter/.
     Directory current = Directory.current;
     print("${current.path}");
-    print("sdkPath exists: ${Directory(sdkPath).existsSync()}");
-    print("../ exists: ${Directory('../').existsSync()}");
-    print("../usr exists: ${Directory('../usr').existsSync()}");
-    print("../../ exists: ${Directory('../../').existsSync()}");
-    print("../../usr exists: ${Directory('../../usr').existsSync()}");
+    print("sdkPath exists: ${FileSystemEntity.isDirectorySync(sdkPath)}");
+    print("../ exists: ${FileSystemEntity.isDirectorySync('../')}");
+    print("../usr exists: ${FileSystemEntity.isDirectorySync('../usr')}");
+    print("../../ exists: ${FileSystemEntity.isDirectorySync('../../')}");
+    print("../../usr exists: ${FileSystemEntity.isDirectorySync('../../usr')}");
     print("${sdkPath} ${FileSystemEntity.isDirectorySync(sdkPath)} ${!FileSystemEntity.isDirectorySync(path.join(sdkPath, 'bin'))}");
     if (!FileSystemEntity.isDirectorySync(sdkPath) ||
         !FileSystemEntity.isDirectorySync(path.join(sdkPath, 'bin'))) {
