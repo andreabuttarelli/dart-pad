@@ -94,7 +94,7 @@ class EndpointsServer {
 
     endpointsServer.server = await shelf.serve(
       endpointsServer.handler,
-      'https://gwk4k0w.49.13.169.245.sslip.io',
+      '49.13.169.245',
       port,
     );
 
