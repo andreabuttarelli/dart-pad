@@ -153,6 +153,11 @@ final class Sdk {
     print('sdkPath exists: ${FileSystemEntity.isDirectorySync(sdkPath)}');
     print("../ exists: ${FileSystemEntity.isDirectorySync('../')}");
     print("../usr exists: ${FileSystemEntity.isDirectorySync('../usr')}");
+    if (FileSystemEntity.isDirectorySync('../usr')) {
+      for (final e in Directory('../usr').listSync()) {
+        print(e.path);
+      }
+    }
     print("../../ exists: ${FileSystemEntity.isDirectorySync('../../')}");
     print("../../usr exists: ${FileSystemEntity.isDirectorySync('../../usr')}");
     if (FileSystemEntity.isDirectorySync('../../usr')) {
