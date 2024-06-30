@@ -42,16 +42,7 @@ Future<void> main(List<String> args) async {
 
   final sdk = Sdk.fromLocalFlutter();
 
-  final int port;
-
-  // Read port from args; fall back to using an env. variable.
-  if (results.wasParsed('port')) {
-    port = int.parse(results['port'] as String);
-  } else if (Platform.environment['PORT'] case final environmentPath?) {
-    port = int.parse(environmentPath);
-  } else {
-    port = 8080;
-  }
+  final port = 8081;
 
   Logger.root.level = Level.FINER;
   emitLogsToStdout();
