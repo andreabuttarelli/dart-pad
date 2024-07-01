@@ -4,7 +4,10 @@ WORKDIR /app
 
 COPY . .
 
-RUN dart compile exe bin/dart_services.dart -o bin/server
+RUN dart pub global activate dart_frog_cli
+RUN dart pub global run dart_frog_cli:dart_frog build
+
+RUN dart compile exe build/bin/dart_services.dart -o build/bin/server
 
 RUN dart run grinder build-project-templates
 
