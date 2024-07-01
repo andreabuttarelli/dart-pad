@@ -1,32 +1,32 @@
-FROM ubuntu:20.04
+FROM debian:stretch
 
-# Installa le dipendenze
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    unzip \
-    xz-utils \
-    libglu1-mesa \
-    pkg-config
+# Install Dependencies.
+RUN apt update -yRUN apt install -y \  git \  wget \  curl \  unzip \  lib32stdc++6 \  libglu1-mesa \  default-jdk-headless
 
-# Clona Flutter o aggiorna se già presente
-RUN if [ -d "flutter" ]; then \
-        cd flutter && git pull && cd ..; \
-    else \
-        git clone https://github.com/flutter/flutter.git -b stable; \
-    fi
+# Install Flutter.
+ENV FLUTTER_ROOT="/opt/flutter"
+RUN git clone https://github.com/flutter/flutter "${FLUTTER_ROOT}"
+ENV PATH="${FLUTTER_ROOT}/bin:${PATH}"
 
-# Configura Flutter
-RUN /app/flutter/bin/flutter config --disable-analytics
+# Disable analytics and crash reporting on the builder.
+RUN flutter config --no-analytics
 
-# Imposta le variabili d'ambiente
-ENV FLUTTER_ROOT=/app/flutter
-ENV PATH=$PATH:/app/flutter/bin
+# Perform an artifact precache so that no extra assets need to be downloaded on demand.
+RUN flutter precache
+# Perform a doctor run.
+RUN flutter doctor -v
+# Switch to the correct channel
+ARG channel=stable
+RUN flutter channel $channel
+# Perform a flutter upgrade
+RUN flutter upgrade
 
-RUN flutter/bin/dart pub get
-RUN flutter/bin/dart compile exe bin/dart_services.dart -o bin/dart_services
+ENTRYPOINT [ "flutter" ]
 
-RUN flutter/bin/dart run grinder build-project-templates
+RUN dart pub get
+RUN dart compile exe bin/dart_services.dart -o bin/dart_services
+
+RUN dart run grinder build-project-templates
 
 EXPOSE 8081
 CMD ["/app/bin/dart_services"]
