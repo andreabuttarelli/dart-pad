@@ -41,4 +41,4 @@ RUN dart compile exe bin/dart_services.dart -o bin/server
 RUN dart run grinder build-project-templates
 
 EXPOSE 8081
-CMD ["/pkgs/dart_services/bin/server"]
+ENTRYPOINT ["/pkgs/dart_services/bin/server"]
