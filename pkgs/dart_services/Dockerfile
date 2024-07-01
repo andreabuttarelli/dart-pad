@@ -31,9 +31,16 @@ COPY . .
 # Change to the dart_services directory
 WORKDIR /app/pkgs/dart_services
 
-RUN ls
+RUN ls -la
 
-RUN dart pub get
+# Install dependencies
+RUN flutter pub get
+
+# Verify that dart is available
+RUN which dart
+
+RUN dart --version
+
 RUN dart compile exe bin/dart_services.dart
 
 RUN dart run grinder build-project-templates
