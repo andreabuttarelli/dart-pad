@@ -22,12 +22,11 @@ RUN flutter channel $channel
 # Perform a flutter upgrade
 RUN flutter upgrade
 
-WORKDIR /var/www/html
+WORKDIR /pkgs/dartpad_shared
+COPY pkgs/dartpad_shared .
 
-# Copy the project files into the container
-COPY . /var/www/html
-
-WORKDIR /var/www/html
+WORKDIR /pkgs/dart_services
+COPY pkgs/dart_services .
 
 # Install dependencies
 RUN flutter pub get
@@ -37,9 +36,9 @@ RUN which dart
 
 RUN dart --version
 
-RUN dart compile exe bin/dart_services.dart -o bin/dart_services
+RUN dart compile exe bin/dart_services.dart -o bin/server
 
 RUN dart run grinder build-project-templates
 
-EXPOSE 8081
-CMD ["bin/dart_services"]
+EXPOSE 8080
+CMD ["/app/bin/server"]
