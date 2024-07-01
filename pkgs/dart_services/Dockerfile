@@ -1,21 +1,32 @@
-ARG PROJECT_ID
-ARG FLUTTER_CHANNEL
-ARG BUILD_SHA
+FROM ubuntu:20.04
 
-FROM gcr.io/$PROJECT_ID/flutter:$FLUTTER_CHANNEL
+# Installa le dipendenze
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    unzip \
+    xz-utils \
+    libglu1-mesa \
+    pkg-config
 
-WORKDIR /pkgs/dartpad_shared
-COPY pkgs/dartpad_shared .
+# Clona Flutter o aggiorna se già presente
+RUN if [ -d "flutter" ]; then \
+        cd flutter && git pull && cd ..; \
+    else \
+        git clone https://github.com/flutter/flutter.git -b stable; \
+    fi
 
-WORKDIR /pkgs/dart_services
-COPY pkgs/dart_services .
+# Configura Flutter
+RUN /app/flutter/bin/flutter config --disable-analytics
 
-RUN dart pub get
-RUN dart compile exe bin/server.dart -o bin/dart_services
+# Imposta le variabili d'ambiente
+ENV FLUTTER_ROOT=/app/flutter
+ENV PATH=$PATH:/app/flutter/bin
 
-RUN dart run grinder build-project-templates
+RUN flutter/bin/dart pub get
+RUN flutter/bin/dart compile exe bin/dart_services.dart -o bin/dart_services
 
-ENV BUILD_SHA=$BUILD_SHA
+RUN flutter/bin/dart run grinder build-project-templates
 
 EXPOSE 8081
 CMD ["/app/bin/dart_services"]
