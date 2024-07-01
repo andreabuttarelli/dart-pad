@@ -22,7 +22,7 @@ RUN flutter channel $channel
 # Perform a flutter upgrade
 RUN flutter upgrade
 
-RUN flutter pub get
+RUN ls
 RUN dart compile exe bin/dart_services.dart -o bin/dart_services
 
 RUN dart run grinder build-project-templates
