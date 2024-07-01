@@ -28,8 +28,6 @@ COPY pkgs/dartpad_shared .
 WORKDIR /pkgs/dart_services
 COPY pkgs/dart_services .
 
-WORKDIR /app
-
 # Install dependencies
 RUN flutter pub get
 
@@ -43,4 +41,4 @@ RUN dart compile exe bin/dart_services.dart -o bin/server
 RUN dart run grinder build-project-templates
 
 EXPOSE 8081
-CMD ["/bin/server"]
+CMD ["/pkgs/dart_services/bin/server"]
