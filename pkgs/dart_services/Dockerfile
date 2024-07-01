@@ -31,6 +31,8 @@ COPY . .
 # Change to the dart_services directory
 WORKDIR /app/pkgs/dart_services
 
+RUN ls
+
 RUN dart pub get
 RUN dart compile exe bin/dart_services.dart
 
