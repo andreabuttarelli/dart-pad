@@ -32,7 +32,7 @@ COPY . .
 WORKDIR /app/pkgs/dart_services
 
 RUN dart pub get
-RUN dart compile exe bin/dart_services.dart -o bin/dart_services
+RUN dart compile exe bin/dart_services.dart
 
 RUN dart run grinder build-project-templates
 
