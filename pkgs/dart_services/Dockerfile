@@ -13,7 +13,7 @@ RUN dart run grinder build-project-templates
 
 FROM scratch
 COPY --from=build /runtime/ /
-COPY --from=build /app/build/bin/server /app/bin/
+COPY --from=build /app/bin/server /app/bin/
 
 EXPOSE 8081
 CMD ["/app/bin/server"]
