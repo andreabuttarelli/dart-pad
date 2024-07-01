@@ -28,6 +28,8 @@ COPY pkgs/dartpad_shared .
 WORKDIR /pkgs/dart_services
 COPY pkgs/dart_services .
 
+WORKDIR /app
+
 # Install dependencies
 RUN flutter pub get
 
