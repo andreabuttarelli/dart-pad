@@ -11,11 +11,11 @@ WORKDIR /pkgs/dart_services
 COPY pkgs/dart_services .
 
 RUN dart pub get
-RUN dart compile exe bin/server.dart -o bin/server
+RUN dart compile exe bin/server.dart -o bin/dart_services
 
 RUN dart run grinder build-project-templates
 
 ENV BUILD_SHA=$BUILD_SHA
 
-EXPOSE 8080
-CMD ["/app/bin/server"]
+EXPOSE 8081
+CMD ["/app/bin/dart_services"]
