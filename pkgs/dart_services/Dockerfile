@@ -22,10 +22,12 @@ RUN flutter channel $channel
 # Perform a flutter upgrade
 RUN flutter upgrade
 
-WORKDIR /
+WORKDIR /var/www/html
 
 # Copy the project files into the container
-COPY . /
+COPY . /var/www/html
+
+WORKDIR /var/www/html
 
 # Install dependencies
 RUN flutter pub get
