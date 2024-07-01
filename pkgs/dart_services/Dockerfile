@@ -31,7 +31,7 @@ COPY . .
 # Change to the dart_services directory
 WORKDIR /app/pkgs/dart_services
 
-RUN ls -la
+RUN ls
 
 # Install dependencies
 RUN flutter pub get
