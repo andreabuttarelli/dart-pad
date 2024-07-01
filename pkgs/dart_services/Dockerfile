@@ -22,6 +22,12 @@ RUN flutter channel $channel
 # Perform a flutter upgrade
 RUN flutter upgrade
 
+WORKDIR /pkgs/dartpad_shared
+COPY pkgs/dartpad_shared .
+
+WORKDIR /pkgs/dart_services
+COPY pkgs/dart_services .
+
 RUN ls
 RUN dart compile exe bin/dart_services.dart -o bin/dart_services
 
