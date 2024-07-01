@@ -22,14 +22,11 @@ RUN flutter channel $channel
 # Perform a flutter upgrade
 RUN flutter upgrade
 
-# Create a working directory for the project
-WORKDIR /app
+WORKDIR /pkgs/dartpad_shared
+COPY pkgs/dartpad_shared .
 
-# Copy the project files into the container
-COPY . .
-
-# Change to the dart_services directory
-WORKDIR /app/pkgs/dart_services
+WORKDIR /pkgs/dart_services
+COPY pkgs/dart_services .
 
 RUN ls
 
