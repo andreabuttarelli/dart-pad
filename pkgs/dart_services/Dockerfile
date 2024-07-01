@@ -1,44 +1,16 @@
-FROM debian:bookworm-slim
+FROM dart:stable AS build
 
-# Install Dependencies.
-RUN apt update -y
-RUN apt install -y git wget curl unzip lib32stdc++6 libglu1-mesa default-jdk-headless
+WORKDIR /app
 
-# Install Flutter.
-ENV FLUTTER_ROOT="/opt/flutter"
-RUN git clone https://github.com/flutter/flutter "${FLUTTER_ROOT}"
-ENV PATH="${FLUTTER_ROOT}/bin:${PATH}"
-
-# Disable analytics and crash reporting on the builder.
-RUN flutter config --no-analytics
-
-# Perform an artifact precache so that no extra assets need to be downloaded on demand.
-RUN flutter precache
-# Perform a doctor run.
-RUN flutter doctor -v
-# Switch to the correct channel
-ARG channel=stable
-RUN flutter channel $channel
-# Perform a flutter upgrade
-RUN flutter upgrade
-
-WORKDIR /pkgs/dartpad_shared
-COPY pkgs/dartpad_shared .
-
-WORKDIR /pkgs/dart_services
-COPY pkgs/dart_services .
-
-# Install dependencies
-RUN flutter pub get
-
-# Verify that dart is available
-RUN which dart
-
-RUN dart --version
+COPY . .
 
 RUN dart compile exe bin/dart_services.dart -o bin/server
 
 RUN dart run grinder build-project-templates
 
+FROM scratch
+COPY --from=build /runtime/ /
+COPY --from=build /app/build/bin/server /app/bin/
+
 EXPOSE 8081
-ENTRYPOINT ["/pkgs/dart_services/bin/server"]
+CMD ["/app/bin/server"]
