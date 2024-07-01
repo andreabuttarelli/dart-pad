@@ -18,6 +18,7 @@ class ProjectTemplates {
 
   factory ProjectTemplates() {
     final basePath = _baseTemplateProject();
+    print('_baseTemplateProject: $basePath');
     final summaryFilePath = path.join(
       'artifacts',
       'flutter_web.dill',
@@ -40,8 +41,10 @@ class ProjectTemplates {
 
   static ProjectTemplates projectTemplates = ProjectTemplates();
 
-  static String _baseTemplateProject() =>
-      path.join(Directory.current.path, 'project_templates');
+  static String _baseTemplateProject() {
+    print('current path: ${Directory.current.path}');
+    return path.join(Directory.current.path, 'project_templates');
+  }
 }
 
 /// The set of supported Flutter-oriented packages.
