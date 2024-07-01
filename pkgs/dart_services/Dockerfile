@@ -1,7 +1,8 @@
 FROM debian:stretch
 
 # Install Dependencies.
-RUN apt update -yRUN apt install -y \  git \  wget \  curl \  unzip \  lib32stdc++6 \  libglu1-mesa \  default-jdk-headless
+RUN apt update -y
+RUN apt install -y git wget curl unzip lib32stdc++6 libglu1-mesa default-jdk-headless
 
 # Install Flutter.
 ENV FLUTTER_ROOT="/opt/flutter"
