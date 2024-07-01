@@ -46,4 +46,4 @@ RUN dart compile exe bin/dart_services.dart
 RUN dart run grinder build-project-templates
 
 EXPOSE 8081
-CMD ["/app/bin/dart_services"]
+CMD ["./bin/dart_services"]
