@@ -22,8 +22,6 @@ RUN flutter channel $channel
 # Perform a flutter upgrade
 RUN flutter upgrade
 
-ENTRYPOINT [ "flutter" ]
-
 RUN dart pub get
 RUN dart compile exe bin/dart_services.dart -o bin/dart_services
 
