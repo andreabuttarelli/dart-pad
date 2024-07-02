@@ -309,8 +309,10 @@ class AppServices {
     final progress =
         appModel.editorStatus.showMessage(initialText: 'Compiling…');
 
+    print(source);
     try {
       final response = await _compileDDC(CompileRequest(source: source));
+      print(response.result);
       appModel.clearConsole();
       _executeJavaScript(
         response.result,
@@ -447,11 +449,11 @@ class AppServices {
 }
 
 enum Channel {
-  stable('Stable', 'http://gwk4k0w.49.13.169.245.sslip.io:8081/'),
-  beta('Beta', 'http://gwk4k0w.49.13.169.245.sslip.io:8081/'),
-  main('Main', 'http://gwk4k0w.49.13.169.245.sslip.io:8081/'),
+  stable('Stable', 'https://gwk4k0w.49.13.169.245.sslip.io/'),
+  beta('Beta', 'https://gwk4k0w.49.13.169.245.sslip.io/'),
+  main('Main', 'https://gwk4k0w.49.13.169.245.sslip.io/'),
   // This channel is only used for local development.
-  localhost('Localhost', 'http://localhost:8080/');
+  localhost('Localhost', 'https://gwk4k0w.49.13.169.245.sslip.io/');
 
   final String displayName;
   final String url;
