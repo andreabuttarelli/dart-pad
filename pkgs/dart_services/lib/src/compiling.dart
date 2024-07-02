@@ -130,12 +130,12 @@ class Compiler {
       final arguments = <String>[
         '--modules=amd',
         '--no-summarize',
-        /*if (usingFlutter) ...[
+        if (usingFlutter) ...[
           '-s',
           _projectTemplates.summaryFilePath,
           '-s',
           '${_sdk.flutterWebSdkPath}/ddc_outline_sound.dill',
-        ],*/
+        ],
         ...['-o', path.join(temp.path, '$kMainDart.js')],
         ...['--module-name', 'dartpad_main'],
         '--enable-asserts',
