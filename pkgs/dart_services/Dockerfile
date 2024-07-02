@@ -39,7 +39,7 @@ RUN which dart
 
 RUN dart --version
 
-RUN dart compile exe app/bin/dart_services.dart -o app/bin/server
+RUN dart compile exe bin/dart_services.dart -o app/bin/server
 
 RUN dart run grinder build-project-templates
 
