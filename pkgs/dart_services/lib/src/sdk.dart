@@ -146,8 +146,9 @@ final class Sdk {
     // packages/flutter/.
 
     print('sdkPath: $sdkPath');
+    print('sdkPath exists: ${Directory('/app/opt/flutter').existsSync()}');
     print('sdkPath exists: ${Directory(sdkPath).existsSync()}');
-    print('current directory exists: ${Directory.current.path}');
+    print('current directory: ${Directory.current.path}');
 
     if (!FileSystemEntity.isDirectorySync(sdkPath) ||
         !FileSystemEntity.isDirectorySync(path.join(sdkPath, 'bin'))) {
