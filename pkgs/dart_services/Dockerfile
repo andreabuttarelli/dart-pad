@@ -1,19 +1,47 @@
-FROM dart:stable AS build
+FROM debian:bullseye-slim
+
+# Install Dependencies.
+RUN apt update -y
+RUN apt install -y git wget curl unzip lib32stdc++6 libglu1-mesa default-jdk-headless
+
+# Install Flutter.
+ENV FLUTTER_ROOT="/opt/flutter"
+RUN git clone https://github.com/flutter/flutter "${FLUTTER_ROOT}"
+ENV PATH="${FLUTTER_ROOT}/bin:${PATH}"
+
+# Disable analytics and crash reporting on the builder.
+RUN flutter config --no-analytics
+
+# Perform an artifact precache so that no extra assets need to be downloaded on demand.
+RUN flutter precache
+# Perform a doctor run.
+RUN flutter doctor -v
+# Switch to the correct channel
+ARG channel=stable
+RUN flutter channel $channel
+# Perform a flutter upgrade
+RUN flutter upgrade
+
+WORKDIR /var/www/html
+
+# Copy the project files into the container
+COPY . /var/www/html
 
 WORKDIR /app
 
-COPY pubspec.* ./
-RUN dart pub get
+COPY . /app
 
-COPY . .
+# Install dependencies
+RUN flutter pub get
 
-RUN dart compile exe bin/dart_services.dart -o bin/server
+# Verify that dart is available
+RUN which dart
+
+RUN dart --version
+
+RUN dart compile exe app/bin/dart_services.dart -o app/bin/dart_services
 
 RUN dart run grinder build-project-templates
 
-FROM scratch
-COPY --from=build /runtime/ /
-COPY --from=build /app/bin/server /app/bin/
-
 EXPOSE 8081
-CMD ["/app/bin/server"]
+CMD ["app/bin/dart_services"]
