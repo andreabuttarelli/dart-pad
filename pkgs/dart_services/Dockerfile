@@ -39,9 +39,9 @@ RUN which dart
 
 RUN dart --version
 
-RUN dart compile exe app/bin/dart_services.dart -o app/bin/dart_services
+RUN dart compile exe app/bin/dart_services.dart -o app/bin/server
 
 RUN dart run grinder build-project-templates
 
 EXPOSE 8081
-CMD ["app/bin/dart_services"]
+ENTRYPOINT ["app/bin/server"]
