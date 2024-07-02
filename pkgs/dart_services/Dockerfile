@@ -4,6 +4,10 @@ FROM debian:bullseye-slim
 RUN apt update -y
 RUN apt install -y git wget curl unzip lib32stdc++6 libglu1-mesa default-jdk-headless
 
+WORKDIR /app
+
+COPY . /app
+
 # Install Flutter.
 ENV FLUTTER_ROOT="/opt/flutter"
 RUN git clone https://github.com/flutter/flutter "${FLUTTER_ROOT}"
@@ -26,10 +30,6 @@ WORKDIR /var/www/html
 
 # Copy the project files into the container
 COPY . /var/www/html
-
-WORKDIR /app
-
-COPY . /app
 
 # Install dependencies
 RUN flutter pub get
