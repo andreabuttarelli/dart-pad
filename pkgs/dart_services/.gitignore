@@ -5,9 +5,9 @@ build/
 .pub/
 
 # Or the files created by dart2js.
-# *.dart.js
-# *.js.deps
-# *.js.map
+*.dart.js
+*.js.deps
+*.js.map
 
 # Other files.
 coverage.json
@@ -19,7 +19,7 @@ pubspec.lock
 dump.rdb
 
 # compilation artifacts
-#artifacts/
+artifacts/
 # project_templates/
 flutter-sdks/
 local_pub_cache/

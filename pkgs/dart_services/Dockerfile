@@ -45,5 +45,7 @@ RUN dart compile exe bin/dart_services.dart -o bin/server
 
 RUN dart run grinder build-project-templates
 
+RUN dqrt run grinder build-storage-artifacts
+
 EXPOSE 8081
 ENTRYPOINT ["bin/server"]
