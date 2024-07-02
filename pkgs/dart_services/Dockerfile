@@ -9,7 +9,7 @@ WORKDIR /app
 COPY . /app
 
 # Install Flutter.
-ENV FLUTTER_ROOT="/opt/flutter"
+ENV FLUTTER_ROOT="/app/opt/flutter"
 RUN git clone https://github.com/flutter/flutter "${FLUTTER_ROOT}"
 ENV PATH="${FLUTTER_ROOT}/bin:${PATH}"
 
@@ -30,6 +30,8 @@ WORKDIR /var/www/html
 
 # Copy the project files into the container
 COPY . /var/www/html
+
+WORKDIR /app
 
 # Install dependencies
 RUN flutter pub get
