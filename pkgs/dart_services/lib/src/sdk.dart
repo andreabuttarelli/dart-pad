@@ -76,8 +76,9 @@ final class Sdk {
     if (_validFlutterSdk(potentialFlutterSdkPath)) {
       flutterSdkPath = potentialFlutterSdkPath;
     } else {
-      final flutterRootPath = Platform.environment['FLUTTER_ROOT'];
-      if (flutterRootPath == null || !_validFlutterSdk(flutterRootPath)) {
+      final flutterRootPath =
+          '/app/opt/flutter'; //Platform.environment['FLUTTER_ROOT'];
+      if (!_validFlutterSdk(flutterRootPath)) {
         throw StateError('Flutter SDK not found');
       }
       flutterSdkPath = flutterRootPath;
@@ -144,8 +145,6 @@ final class Sdk {
   static bool _validFlutterSdk(String sdkPath) {
     // Verify that this is a Flutter sdk; check for bin/, packages/, and
     // packages/flutter/.
-
-    sdkPath = '/app/opt/flutter';
 
     if (!FileSystemEntity.isDirectorySync(sdkPath) ||
         !FileSystemEntity.isDirectorySync(path.join(sdkPath, 'bin'))) {
